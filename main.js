@@ -1,30 +1,26 @@
-const form = document.getElementById('verifica_numeros')
-const btn = document.querySelector("btn=verificar")
-const a = document.querySelector("A")
-const b = document.querySelector("B")
+const form = document.getElementById("verifica_numeros");
+const btn = document.querySelector("verificar");
+const a = document.querySelector("A");
+const b = document.querySelector("B");
 
 function valida(a,b) {
-        if(a>b){
-
-        }
+        return(a>b)
 }
 
-form.addEventListener('submit', function (e) {
+function getMessage(a, b) {
+  const isGreaterOrEqualOrLess = b == a ? "igual" : b > a ? "maior" : "menor";
+  const message = `O número B=${b}, é ${isGreaterOrEqualOrLess} que o número A=${a}`;
+  return message;
+}
+
+form.addEventListener("submit", function (e) {
         e.preventDefault();
+  const formData = new FormData(e.target);
+  const { a, b } = Object.fromEntries(formData);
 
-        const valorA = a.value;
-        const valorB = b.value;
-        const sucessMsg = ('O número B=${ valorB }, é maior que o número A=${ valorA }')
-
-console.log(sucessMsg)
-
-formEValido = valida(b.value)
-        if(formEValido) {
-                const containnerMsgSucess = document.querySelector('.mensagem_sucess');
-                containnerMsgSucess.innerHTML = sucessMsg;
-                containnerMsgSucess.getElementsByClassName.display = 'block';
-
-                valorA.value = '';
-                valorB.value = '';
-        }
+  const containnerMsgSucess = document.querySelector(".message_sucess");
+  containnerMsgSucess.innerHTML = getMessage(a, b);
+  containnerMsgSucess.getElementsByClassName.display = "block";
+  inputA.value = "";
+  inputB.value = "";
 });
